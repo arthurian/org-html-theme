@@ -11,6 +11,21 @@ A simple, modern, responsive theme for Emacs Org-mode's HTML export
 This project has no build step and no dependencies to install. It contains
 only plain `.css`, `.js`, and `.org` files.
 
+All four screenshots below render `examples/demo.org`.
+
+![Sidebar, title, badges, and an inline timestamp.](docs/screenshot.jpg)
+
+![Code blocks and a table.](docs/screenshot-code.jpg)
+
+Dark mode, shown next, needs no setup of its own. The browser applies it
+based on the reader's system appearance.
+
+![The same sidebar in dark mode.](docs/screenshot-dark.jpg)
+
+![The same code blocks in dark mode.](docs/screenshot-code-dark.jpg)
+
+Both pairs come from the same file.
+
 ## Files
 
 ```
@@ -29,13 +44,13 @@ org-html-theme/
 Add one line near the top of any `.org` file:
 
 ```org
-#+SETUPFILE: "https://cdn.jsdelivr.net/gh/arthurian/org-html-theme@v0.1.0/theme.setup"
+#+SETUPFILE: "https://cdn.jsdelivr.net/gh/arthurian/org-html-theme@v0.1.1/theme.setup"
 ```
 
 Org's `#+SETUPFILE:` keyword accepts a URL directly, so this line needs no
 local clone of this repo at all, on any machine. [jsdelivr](https://www.jsdelivr.com/)
 serves `theme.setup` and the `css/theme.css` and `js/theme.js` files it
-links to straight from this GitHub repo, each pinned to the `v0.1.0` tag.
+links to straight from this GitHub repo, each pinned to the `v0.1.1` tag.
 
 This means exporting a `.org` file needs internet access, the same
 requirement the highlight.js CDN link already has. A tag, once pushed, never
@@ -59,8 +74,10 @@ git tag v0.1.1
 git push origin main v0.1.1
 ```
 
-Then update the tag name to match in `theme.setup`'s `#+HTML_HEAD:` line
-(the CSS) and its `#+HTML_HEAD_EXTRA:` line (the JS). Update the
+Then update the tag name to match in `theme.setup`'s two `jsdelivr.net`
+lines, one `#+HTML_HEAD:` line (the CSS) and one `#+HTML_HEAD_EXTRA:` line
+(the JS). Leave the two `cdnjs.cloudflare.com` lines alone. Those track the
+highlight.js version instead, not this theme's own tag. Update the
 `#+SETUPFILE:` example above too. Commit that change and push again.
 
 ## One required Emacs setting
@@ -88,13 +105,19 @@ configuration instead:
 (setq-default org-html-htmlize-output-type nil)
 ```
 
-## highlight.js version
+## highlight.js version and dark mode
 
 `theme.setup` loads highlight.js version `11.9.0` from the cdnjs CDN
-(content delivery network), along with its "github" light color theme. The
-version is pinned in the URL, not `latest`, so an update to highlight.js
-never changes your exported pages without your choice. To use a newer
-version, edit both CDN URLs in `theme.setup` to the version you want.
+(content delivery network). The version is pinned in the URL, not
+`latest`, so an update to highlight.js never changes your exported pages
+without your choice. To use a newer version, edit all three cdnjs URLs in
+`theme.setup` to match: two stylesheets and one script.
+
+The two stylesheets are a light and a dark highlight.js color theme,
+"github" and "github-dark". Each `<link>` tag carries a `media` attribute,
+`(prefers-color-scheme: light)` or `(prefers-color-scheme: dark)`, so the
+browser loads only the one that matches. This needs no JavaScript. It
+follows the same system setting as the rest of the page.
 
 ## Author and date near the title
 
@@ -115,12 +138,6 @@ single `.org` file.
 
 ## Known limitations
 
-- **Code blocks stay light in dark mode.** The default highlight.js theme,
-  "github", is a light theme. The page around it switches to dark mode
-  automatically, but the code block colors do not follow it. For a dark
-  page throughout, swap the CDN stylesheet link in `theme.setup` for a dark
-  highlight.js theme. The light code blocks are the tradeoff for keeping
-  dark mode automatic and free of extra JavaScript.
 - **Only the two base TODO classes are styled.** Org always emits `.todo`
   and `.done`, and this theme styles both. Org also emits a class named
   after each custom keyword you define, such as `.WAITING`. Those keyword
@@ -140,8 +157,9 @@ single `.org` file.
 `examples/demo.org` uses `theme-local.setup`, not `theme.setup`. It points
 `css/theme.css` and `js/theme.js` at your local clone of this repo, with
 relative paths. A change to either file shows up the next time you export
-`demo.org`, with no need to push a tag first. `theme-local.setup` is not meant for your own
-`.org` files. Use `theme.setup` for those, as shown above.
+`demo.org`, with no need to push a tag first. `theme-local.setup` is not
+meant for your own `.org` files. Use `theme.setup` for those, as shown
+above.
 
 ## Verify a change
 
@@ -155,8 +173,9 @@ manual.
    footnote, the verse block, and the figure all look correct.
 3. Resize the browser below 768 pixels wide. Confirm the sidebar toggle
    button appears and works.
-4. Turn on dark mode in your browser's developer tools. Confirm the page
-   re-themes without a reload.
+4. Turn on dark mode, either in your OS appearance setting or your
+   browser's developer tools. Confirm the page re-themes without a reload,
+   and confirm the code blocks switch to a dark syntax theme too.
 5. Click a toggle arrow next to a sidebar entry that has sub-headings.
    Confirm its nested list collapses and expands again on a second click.
 6. Click "Collapse all" above the sidebar list. Confirm every entry with
