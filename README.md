@@ -69,6 +69,28 @@ In your copy of `theme.setup`, change the two CDN lines to relative paths
 instead. Point them at `css/theme.css` and `js/theme.js`, wherever you put
 those files.
 
+## One Emacs prompt on first export
+
+Org's `org-resource-download-policy` defaults to `prompt`. The first time
+you export a file using the remote `#+SETUPFILE:` line above, Emacs asks
+whether to download it from `cdn.jsdelivr.net`. Approve it.
+
+A batch or scripted export has no one to answer that prompt. Org then
+treats it as "no" and silently skips the whole setup file. A scripted
+pipeline needs this line first instead:
+
+```elisp
+(setq org-resource-download-policy t)
+```
+
+To skip the interactive prompt every time instead, trust this one source
+permanently:
+
+```elisp
+(add-to-list 'org-safe-remote-resources
+             "\\`https://cdn\\.jsdelivr\\.net/gh/arthurian/org-html-theme@")
+```
+
 ## Release an update
 
 The CDN URLs are pinned to a tag. A change to `css/theme.css` or
