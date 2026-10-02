@@ -29,8 +29,8 @@ committing anything, not after:
 5. Tag that commit with the version number from step 1, and push both:
 
    ```sh
-   git tag v0.1.5
-   git push origin main v0.1.5
+   git tag v0.1.6
+   git push origin main v0.1.6
    ```
 
 Pushing the tag is the last manual step. The
