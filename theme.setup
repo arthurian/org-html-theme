@@ -5,9 +5,9 @@
 #+BIND: org-html-preamble-format (("en" "<p class=\"author\">%a</p>\n<p class=\"date\">%d</p>\n"))
 
 #+HTML_HEAD: <meta name="viewport" content="width=device-width, initial-scale=1">
-#+HTML_HEAD: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
-#+HTML_HEAD: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+#+HTML_HEAD: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.2/styles/github.min.css" media="(prefers-color-scheme: light)">
+#+HTML_HEAD: <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.2/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
 #+HTML_HEAD: <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/arthurian/org-html-theme@v0.1.2/css/theme.css">
 
-#+HTML_HEAD_EXTRA: <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+#+HTML_HEAD_EXTRA: <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.2/highlight.min.js"></script>
 #+HTML_HEAD_EXTRA: <script src="https://cdn.jsdelivr.net/gh/arthurian/org-html-theme@v0.1.2/js/theme.js" defer></script>
