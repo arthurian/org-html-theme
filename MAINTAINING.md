@@ -8,34 +8,50 @@ own `.org` files.
 
 The CDN URLs are pinned to a tag. A change to `css/theme.css` or
 `js/theme.js` has no effect on anyone using this theme until you push a new
-tag. After committing a change, create and push one:
+tag.
 
-```sh
-git tag v0.1.3
-git push origin main v0.1.3
-```
+`theme.setup` is itself served from the same tag. It also points its own
+two `jsdelivr.net` lines at that same tag: one `#+HTML_HEAD:` line for the
+CSS, one `#+HTML_HEAD_EXTRA:` line for the JS. Those two lines must change
+in the same commit the tag points to, never a commit after it. Tag a
+commit first, then update those two lines in a second commit. From then
+on, `theme.setup` points at the previous tag's `css/theme.css` and
+`js/theme.js`, not its own. Decide the next version number before
+committing anything, not after:
 
-Then update the tag name to match in `theme.setup`'s two `jsdelivr.net`
-lines, one `#+HTML_HEAD:` line (the CSS) and one `#+HTML_HEAD_EXTRA:` line
-(the JS). Leave the two `cdnjs.cloudflare.com` lines alone. Those track the
-highlight.js version instead, not this theme's own tag. Update the
-`#+SETUPFILE:` example in the README too.
+1. Make the real change (to `css/theme.css`, `js/theme.js`, or elsewhere).
+2. In the same change, update `theme.setup`'s two `jsdelivr.net` lines to
+   the version number you decided. Leave the two `cdnjs.cloudflare.com`
+   lines alone. Those track the highlight.js version instead, not this
+   theme's own tag.
+3. Update the `#+SETUPFILE:` example in the README to match.
+4. Commit everything above together, as one commit.
+5. Tag that commit with the version number from step 1, and push both:
 
-`docs/index.html`, the live demo, is a static snapshot. A tag change does
-not update it on its own. Regenerate it from `examples/demo.org`, pointed
-at the new tag, and commit the result alongside the rest of this release:
+   ```sh
+   git tag v0.1.5
+   git push origin main v0.1.5
+   ```
 
-```sh
-emacs --batch \
-  --eval "(require 'ox-html)" \
-  --eval "(setq org-export-allow-bind-keywords t)" \
-  --eval "(setq org-resource-download-policy t)" \
-  --visit=examples/demo.org --funcall org-html-export-to-html
-```
+`docs/index.html`, the live demo, is a static snapshot. It does not update
+on its own, and regenerating it comes last, in its own commit, after the
+steps above, never inside that one commit. It points at the new tag
+through the same jsdelivr URL everyone else uses. That URL only resolves
+once the tag above is pushed.
 
-Copy the result to `docs/index.html`. Replace its `#+SETUPFILE:` line with
-the published CDN URL at the new tag. Point its intro paragraph's link at
-this repository. Commit everything together, then push.
+6. Build a temporary copy of `examples/demo.org` (not the file itself,
+   which uses the local `theme-local.setup` for day-to-day development,
+   not the published one). Point its `#+SETUPFILE:` line at the new tag:
+
+   ```sh
+   emacs --batch \
+     --eval "(require 'ox-html)" \
+     --eval "(setq org-export-allow-bind-keywords t)" \
+     --eval "(setq org-resource-download-policy t)" \
+     --visit=/path/to/that/copy.org --funcall org-html-export-to-html
+   ```
+7. Copy the exported result to `docs/index.html`, and point its intro
+   paragraph's link at this repository. Commit and push that on its own.
 
 ## Update the highlight.js version
 

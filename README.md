@@ -50,13 +50,13 @@ org-html-theme/
 Add one line near the top of any `.org` file:
 
 ```org
-#+SETUPFILE: "https://cdn.jsdelivr.net/gh/arthurian/org-html-theme@v0.1.2/theme.setup"
+#+SETUPFILE: "https://cdn.jsdelivr.net/gh/arthurian/org-html-theme@v0.1.4/theme.setup"
 ```
 
 Org's `#+SETUPFILE:` keyword accepts a URL directly, so this line needs no
 local clone of this repo at all, on any machine. [jsdelivr](https://www.jsdelivr.com/)
 serves `theme.setup` and the `css/theme.css` and `js/theme.js` files it
-links to straight from this GitHub repo, each pinned to the `v0.1.2` tag.
+links to straight from this GitHub repo, each pinned to the `v0.1.4` tag.
 
 This means exporting a `.org` file needs internet access, the same
 requirement the highlight.js CDN link already has. A tag, once pushed, never
