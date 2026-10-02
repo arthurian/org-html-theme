@@ -98,6 +98,16 @@ This sentence has a footnote reference.[fn:1]
 
 [fn:1] This is the footnote definition.
 
+* Math
+
+Euler's identity, inline, is \(e^{i\pi} + 1 = 0\). Org adds MathJax to the
+page automatically whenever a file has a LaTeX fragment like this one, so
+this needs no setup in `theme.setup`.
+
+\begin{equation}
+\int_0^\infty e^{-x^2}\,dx = \frac{\sqrt{\pi}}{2}
+\end{equation}
+
 * Figure
 :PROPERTIES:
 :CUSTOM_ID: demo-figure

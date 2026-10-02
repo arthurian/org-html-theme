@@ -608,3 +608,92 @@ h2.footnotes {
   color: var(--color-text-muted);
   font-size: 0.85em;
 }
+
+/* -- 13. Print ----------------------------------------------------------------
+   Forces light, ink-sparing colors regardless of the screen's light or dark
+   mode, since "Print to PDF" should not carry the screen's dark background
+   onto paper. Turns the fixed sidebar into a normal, in-flow table of
+   contents ahead of the content, instead of hiding it, and removes controls
+   that only make sense on screen. */
+
+@media print {
+  :root {
+    --color-bg: #ffffff;
+    --color-bg-alt: #f3f3f3;
+    --color-text: #000000;
+    --color-text-muted: #333333;
+    --color-link: #000000;
+    --color-link-hover: #000000;
+    --color-border: #999999;
+    --color-code-bg: #f3f3f3;
+    --color-accent: #000000;
+    --color-todo: #333333;
+    --color-done: #333333;
+  }
+
+  .sidebar-toggle,
+  .sidebar-overlay,
+  .sidebar-resizer,
+  .toc-controls,
+  .toc-toggle {
+    display: none !important;
+  }
+
+  /* Print the full outline, regardless of what is collapsed on screen. */
+  li.toc-collapsed > ul {
+    display: block !important;
+  }
+
+  #table-of-contents {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    border-right: none;
+    background: none;
+    padding: 0 0 var(--space-lg) 0;
+    page-break-after: always;
+  }
+
+  #preamble,
+  #content,
+  #postamble {
+    margin-left: 0;
+    max-width: none;
+    padding: 0;
+  }
+
+  /* highlight.js loads a light or dark theme based on the screen's color
+     scheme, a signal print does not reliably override. Force plain,
+     legible text instead of risking light-on-dark code on paper. */
+  pre.src,
+  pre.src *,
+  pre.example,
+  pre.example * {
+    color: #000000 !important;
+    background: #ffffff !important;
+  }
+
+  pre.src,
+  pre.example {
+    white-space: pre-wrap;
+    overflow-x: visible;
+    border: 1px solid var(--color-border);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-after: avoid;
+  }
+
+  table,
+  blockquote,
+  pre,
+  div.figure {
+    page-break-inside: avoid;
+  }
+}

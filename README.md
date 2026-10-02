@@ -7,6 +7,8 @@ A simple, modern, responsive theme for Emacs Org-mode's HTML export
 - a syntax-highlighted code block style, powered by
   [highlight.js](https://highlightjs.org/).
 - a dark mode that follows the reader's operating system setting.
+- LaTeX math, through Org's own built-in MathJax support. No setup needed.
+- a print stylesheet, for "Print to PDF" and paper.
 
 This project has no build step and no dependencies to install. It contains
 only plain `.css`, `.js`, and `.org` files.
@@ -44,13 +46,13 @@ org-html-theme/
 Add one line near the top of any `.org` file:
 
 ```org
-#+SETUPFILE: "https://cdn.jsdelivr.net/gh/arthurian/org-html-theme@v0.1.1/theme.setup"
+#+SETUPFILE: "https://cdn.jsdelivr.net/gh/arthurian/org-html-theme@v0.1.2/theme.setup"
 ```
 
 Org's `#+SETUPFILE:` keyword accepts a URL directly, so this line needs no
 local clone of this repo at all, on any machine. [jsdelivr](https://www.jsdelivr.com/)
 serves `theme.setup` and the `css/theme.css` and `js/theme.js` files it
-links to straight from this GitHub repo, each pinned to the `v0.1.1` tag.
+links to straight from this GitHub repo, each pinned to the `v0.1.2` tag.
 
 This means exporting a `.org` file needs internet access, the same
 requirement the highlight.js CDN link already has. A tag, once pushed, never
@@ -70,8 +72,8 @@ The CDN URLs are pinned to a tag. A change to `css/theme.css` or
 tag. After committing a change, create and push one:
 
 ```sh
-git tag v0.1.1
-git push origin main v0.1.1
+git tag v0.1.3
+git push origin main v0.1.3
 ```
 
 Then update the tag name to match in `theme.setup`'s two `jsdelivr.net`
@@ -136,6 +138,27 @@ To turn off the top placement only, delete this `#+BIND` line from
 `theme.setup`. You can also override it with your own `#+BIND` line in a
 single `.org` file.
 
+## Math
+
+Write LaTeX math in your `.org` file, inline as `\(e^{i\pi} + 1 = 0\)` or
+as a display equation. Org detects it and adds [MathJax](https://www.mathjax.org/)
+to the page on its own, with no line needed in `theme.setup` and no
+`#+OPTIONS` to set. A file with no math loads no MathJax script at all.
+
+## Print to PDF
+
+The stylesheet includes a `@media print` block, used automatically by
+"Print" or "Print to PDF" in your browser. It makes three changes.
+
+- It forces light, ink-sparing colors on paper, no matter the screen's
+  current mode. A dark background belongs on a screen, not in a PDF.
+- It turns the fixed sidebar into a normal table of contents ahead of the
+  content, instead of hiding it. Every section prints expanded, no matter
+  what is collapsed on screen.
+- It removes controls that only make sense on screen: the TODO sidebar
+  toggle, the expand/collapse-all buttons, each section's toggle arrow,
+  and the sidebar resize handle.
+
 ## Known limitations
 
 - **Only the two base TODO classes are styled.** Org always emits `.todo`
@@ -182,6 +205,12 @@ manual.
    sub-headings collapses. Click "Expand all". Confirm they all reopen.
 7. Drag the thin strip at the sidebar's right edge. Confirm the sidebar,
    the title area, and the main content all resize together.
+8. Open your browser's print preview. Confirm the sidebar reflows above
+   the content as a plain table of contents. Confirm every section shows
+   expanded. Confirm the code blocks print in plain black text, not a
+   syntax color theme.
+9. Confirm the Math section renders an inline equation and a numbered
+   display equation, not raw LaTeX text.
 
 ## Credit
 
