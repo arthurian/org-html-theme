@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- 2026-10-02 Fri 17:10 -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>org-html-theme Demo</title>
+<meta name="author" content="Demo Author" />
+<meta name="generator" content="Org Mode" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/arthurian/org-html-theme@v0.1.2/css/theme.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/arthurian/org-html-theme@v0.1.2/js/theme.js" defer></script>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="preamble" class="status">
+<p class="author">Demo Author</p>
+<p class="date">2026-10-02</p>
+</div>
+<div id="content" class="content">
+<header>
+<h1 class="title">org-html-theme Demo</h1>
+<p class="subtitle" role="doc-subtitle">A visual test fixture for the theme</p>
+</header><nav id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org0f413b9">1. Overview</a>
+<ul>
+<li><a href="#org64588ae">1.1. Background</a>
+<ul>
+<li><a href="#org464f56d">1.1.1. History</a></li>
+<li><a href="#org73e281d">1.1.2. <span class="todo TODO">TODO</span> Motivation&#xa0;&#xa0;&#xa0;<span class="tag"><span class="draft">draft</span>&#xa0;<span class="review">review</span></span></a></li>
+<li><a href="#org45d22d6">1.1.3. <span class="done DONE">DONE</span> An earlier step</a></li>
+</ul>
+</li>
+<li><a href="#org6db4c19">1.2. Inline markup</a></li>
+</ul>
+</li>
+<li><a href="#org8a28d3c">2. Code</a></li>
+<li><a href="#orge2b27ba">3. Tables</a></li>
+<li><a href="#orgd1c86b0">4. Quotes and verse</a></li>
+<li><a href="#org237b405">5. Notes</a></li>
+<li><a href="#orga712eff">6. Math</a></li>
+<li><a href="#demo-figure">7. Figure</a></li>
+<li><a href="#orgf3b647a">8. Container class demo</a></li>
+</ul>
+</div>
+</nav>
+<p>
+This page is a live demo of <a href="https://github.com/arthurian/org-html-theme">org-html-theme</a>, a simple, modern, responsive theme
+for Emacs Org-mode's HTML export. It exercises every element the theme
+styles, exported straight from the same <code>examples/demo.org</code> file in the
+repository, using the theme's own published <code>#+SETUPFILE:</code> line. See the
+repository's <code>README.md</code> for how to use it in your own files.
+</p>
+<div id="outline-container-org0f413b9" class="outline-2">
+<h2 id="org0f413b9"><span class="section-number-2">1.</span> <a href="#org0f413b9">Overview</a></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+This section exists only to give the sidebar enough content to scroll, and to
+show nested headlines, nested lists, and an internal link.
+</p>
+
+<p>
+This paragraph has an inline timestamp, to confirm the theme styles it: a
+meeting on <span class="timestamp-wrapper"><span class="timestamp">&lt;2026-10-05 Mon&gt;</span></span>.
+</p>
+</div>
+<div id="outline-container-org64588ae" class="outline-3">
+<h3 id="org64588ae"><span class="section-number-3">1.1.</span> <a href="#org64588ae">Background</a></h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org464f56d" class="outline-4">
+<h4 id="org464f56d"><span class="section-number-4">1.1.1.</span> <a href="#org464f56d">History</a></h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+Here is an internal link back to the <a href="#org0f413b9">Overview</a> section.
+</p>
+
+<p>
+Here is a deeply nested bullet list:
+</p>
+
+<ul class="org-ul">
+<li>Platform
+<ul class="org-ul">
+<li>Frontend
+<ul class="org-ul">
+<li>Components
+<ul class="org-ul">
+<li>Buttons</li>
+<li>Forms</li>
+</ul></li>
+</ul></li>
+<li>Backend
+<ul class="org-ul">
+<li>Services</li>
+<li>Queues</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org73e281d" class="outline-4">
+<h4 id="org73e281d"><span class="section-number-4">1.1.2.</span> <a href="#org73e281d"><span class="todo TODO">TODO</span> Motivation&#xa0;&#xa0;&#xa0;<span class="tag"><span class="draft">draft</span>&#xa0;<span class="review">review</span></span></a></h4>
+<div class="outline-text-4" id="text-1-1-2">
+<p>
+This headline carries a TODO keyword, a priority, and two tags, to confirm
+the theme's chip styling.
+</p>
+</div>
+</div>
+<div id="outline-container-org45d22d6" class="outline-4">
+<h4 id="org45d22d6"><span class="section-number-4">1.1.3.</span> <a href="#org45d22d6"><span class="done DONE">DONE</span> An earlier step</a></h4>
+<div class="outline-text-4" id="text-1-1-3">
+<p>
+This headline shows the DONE keyword.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org6db4c19" class="outline-3">
+<h3 id="org6db4c19"><span class="section-number-3">1.2.</span> <a href="#org6db4c19">Inline markup</a></h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+This paragraph shows <b>bold</b>, <i>italic</i>, <span class="underline">underline</span>, <code>verbatim</code>, <code>code</code>, and
+<del>strikethrough</del> text all in one place.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org8a28d3c" class="outline-2">
+<h2 id="org8a28d3c"><span class="section-number-2">2.</span> <a href="#org8a28d3c">Code</a></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Two source blocks in different languages, to confirm the highlight.js
+adapter handles more than one <code>src-LANG</code> class on the same page.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(defun org-html-theme-demo ()
+  "Return a greeting string."
+  (message "Hello from %s" (buffer-name)))
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python">def greet(name: str) -&gt; str:
+    """Return a greeting string."""
+    return f"Hello, {name}!"
+</pre>
+</div>
+
+<p>
+A plain example block, which is not passed to the syntax highlighter:
+</p>
+
+<pre class="example" id="org0215266">
+$ org-export-to-html demo.org
+Exporting to demo.html...
+Done.
+</pre>
+</div>
+</div>
+<div id="outline-container-orge2b27ba" class="outline-2">
+<h2 id="orge2b27ba"><span class="section-number-2">3.</span> <a href="#orge2b27ba">Tables</a></h2>
+<div class="outline-text-2" id="text-3">
+<table>
+<caption class="t-above"><span class="table-number">Table 1:</span> A small glossary table</caption>
+
+<colgroup>
+<col  class="org-left">
+
+<col  class="org-left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Term</th>
+<th scope="col" class="org-left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">TOC</td>
+<td class="org-left">Table of contents</td>
+</tr>
+
+<tr>
+<td class="org-left">hljs</td>
+<td class="org-left">highlight.js</td>
+</tr>
+
+<tr>
+<td class="org-left">CDN</td>
+<td class="org-left">Content delivery network</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="outline-container-orgd1c86b0" class="outline-2">
+<h2 id="orgd1c86b0"><span class="section-number-2">4.</span> <a href="#orgd1c86b0">Quotes and verse</a></h2>
+<div class="outline-text-2" id="text-4">
+<blockquote>
+<p>
+Simplicity is the ultimate sophistication.
+</p>
+</blockquote>
+
+<p class="verse">
+Line one of the verse.<br>
+&#xa0;&#xa0;Line two, indented.<br>
+Line three.<br>
+</p>
+</div>
+</div>
+<div id="outline-container-org237b405" class="outline-2">
+<h2 id="org237b405"><span class="section-number-2">5.</span> <a href="#org237b405">Notes</a></h2>
+<div class="outline-text-2" id="text-5">
+<p>
+This sentence has a footnote reference.<sup><a id="fnr.1" class="footref" href="#fn.1" role="doc-backlink">1</a></sup>
+</p>
+</div>
+</div>
+<div id="outline-container-orga712eff" class="outline-2">
+<h2 id="orga712eff"><span class="section-number-2">6.</span> <a href="#orga712eff">Math</a></h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Euler's identity, inline, is \(e^{i\pi} + 1 = 0\). Org adds MathJax to the
+page automatically whenever a file has a LaTeX fragment like this one, so
+this needs no setup in `theme.setup`.
+</p>
+
+\begin{equation}
+\int_0^\infty e^{-x^2}\,dx = \frac{\sqrt{\pi}}{2}
+\end{equation}
+</div>
+</div>
+<div id="outline-container-demo-figure" class="outline-2">
+<h2 id="demo-figure"><span class="section-number-2">7.</span> <a href="#demo-figure">Figure</a></h2>
+<div class="outline-text-2" id="text-demo-figure">
+<div class="figure">
+  <p>
+    <img class="org-svg" alt="A simple placeholder diagram"
+         src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='120'%3E%3Crect width='320' height='120' fill='%23f6f8fa' stroke='%23d8dee4'/%3E%3Ctext x='160' y='65' font-family='sans-serif' font-size='16' text-anchor='middle' fill='%231f2328'%3EPlaceholder SVG%3C/text%3E%3C/svg%3E">
+  </p>
+  <p><span class="figure-number">Figure 1: </span>An inline SVG placeholder, no binary asset required.</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgf3b647a" class="outline-2 demo-callout">
+<h2 id="orgf3b647a"><span class="section-number-2">8.</span> <a href="#orgf3b647a">Container class demo</a></h2>
+<div class="outline-text-2" id="text-8">
+<p>
+This subtree carries an <code>HTML_CONTAINER_CLASS</code> property, to confirm that a
+custom container class does not break the theme's styling.
+</p>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1" role="doc-backlink">1</a></sup> <div class="footpara" role="doc-footnote"><p class="footpara">
+This is the footnote definition.
+</p></div></div>
+
+
+</div>
+</div></div>
+<div id="postamble" class="status">
+<p class="date">Date: 2026-10-02</p>
+<p class="author">Author: Demo Author</p>
+<p class="date">Created: 2026-10-02 Fri 17:10</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

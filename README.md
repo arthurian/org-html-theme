@@ -13,7 +13,11 @@ A simple, modern, responsive theme for Emacs Org-mode's HTML export
 This project has no build step and no dependencies to install. It contains
 only plain `.css`, `.js`, and `.org` files.
 
-All four screenshots below render `examples/demo.org`.
+**[Live demo](https://arthurian.github.io/org-html-theme/)**. It is the
+same `examples/demo.org` file, exported with the theme's own published
+`#+SETUPFILE:` line and hosted on GitHub Pages from `docs/index.html`.
+
+All four screenshots below render the same file.
 
 ![Sidebar, title, badges, and an inline timestamp.](docs/screenshot.jpg)
 
@@ -80,7 +84,23 @@ Then update the tag name to match in `theme.setup`'s two `jsdelivr.net`
 lines, one `#+HTML_HEAD:` line (the CSS) and one `#+HTML_HEAD_EXTRA:` line
 (the JS). Leave the two `cdnjs.cloudflare.com` lines alone. Those track the
 highlight.js version instead, not this theme's own tag. Update the
-`#+SETUPFILE:` example above too. Commit that change and push again.
+`#+SETUPFILE:` example above too.
+
+`docs/index.html`, the live demo, is a static snapshot. A tag change does
+not update it on its own. Regenerate it from `examples/demo.org`, pointed
+at the new tag, and commit the result alongside the rest of this release:
+
+```sh
+emacs --batch \
+  --eval "(require 'ox-html)" \
+  --eval "(setq org-export-allow-bind-keywords t)" \
+  --eval "(setq org-resource-download-policy t)" \
+  --visit=examples/demo.org --funcall org-html-export-to-html
+```
+
+Copy the result to `docs/index.html`. Replace its `#+SETUPFILE:` line with
+the published CDN URL at the new tag. Point its intro paragraph's link at
+this repository. Commit everything together, then push.
 
 ## One required Emacs setting
 
