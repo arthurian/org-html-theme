@@ -1,0 +1,71 @@
+name: Deploy Pages demo
+
+# Runs on every vX.Y.Z tag push and regenerates docs/index.html pointed at
+# that tag's published jsdelivr URL, replacing the manual "build it
+# yourself and commit it" step in MAINTAINING.md's release process.
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  deploy-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Install Emacs
+        uses: purcell/setup-emacs@master
+        with:
+          version: "30.2"
+
+      - name: Wait for the tag to resolve on jsdelivr
+        run: |
+          url="https://cdn.jsdelivr.net/gh/${{ github.repository }}@${{ github.ref_name }}/theme.setup"
+          for i in $(seq 1 20); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$url")
+            if [ "$code" = "200" ]; then
+              echo "Resolved $url after $i attempt(s)."
+              exit 0
+            fi
+            echo "Attempt $i: got HTTP $code for $url, retrying in 5s..."
+            sleep 5
+          done
+          echo "Gave up waiting for $url to resolve."
+          exit 1
+
+      - name: Build the demo source for this tag
+        run: |
+          python3 .github/scripts/build_pages_demo.py \
+            "${{ github.ref_name }}" "${{ github.repository }}"
+
+      - name: Export to HTML
+        run: |
+          emacs --batch \
+            --eval "(require 'org)" \
+            --eval "(require 'ox-html)" \
+            --eval "(setq org-export-allow-bind-keywords t)" \
+            --eval "(setq org-resource-download-policy t)" \
+            --visit=docs-build/index.org \
+            --funcall org-html-export-to-html
+
+      - name: Update docs/index.html
+        run: cp docs-build/index.html docs/index.html
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/index.html
+          if git diff --cached --quiet; then
+            echo "docs/index.html is already up to date."
+          else
+            git commit -m "Regenerate docs/index.html at ${{ github.ref_name }} [skip ci]"
+            git push origin main
+          fi

@@ -33,29 +33,18 @@ committing anything, not after:
    git push origin main v0.1.5
    ```
 
-`docs/index.html`, the live demo, is a static snapshot. It does not update
-on its own, and regenerating it comes last, in its own commit, after the
-steps above, never inside that one commit. It points at the new tag
-through the same jsdelivr URL everyone else uses. That URL only resolves
-once the tag above is pushed.
-
-6. Build a temporary copy of `examples/demo.org` (not the file itself,
-   which uses the local `theme-local.setup` for day-to-day development,
-   not the published one). Point its `#+SETUPFILE:` line at the new tag:
-
-   ```sh
-   emacs --batch \
-     --eval "(require 'ox-html)" \
-     --eval "(setq org-export-allow-bind-keywords t)" \
-     --eval "(setq org-resource-download-policy t)" \
-     --visit=/path/to/that/copy.org --funcall org-html-export-to-html
-   ```
-7. Copy the exported result to `docs/index.html`, and point its intro
-   paragraph's link at this repository. Commit and push that on its own.
+Pushing the tag is the last manual step. The
+[`deploy-pages-demo.yml`](.github/workflows/deploy-pages-demo.yml)
+workflow does the rest on its own. It waits for the new tag to resolve on
+jsdelivr. It builds a copy of `examples/demo.org` pointed at that tag,
+using [`build_pages_demo.py`](.github/scripts/build_pages_demo.py). It
+exports that copy. When the result changed, it commits that to
+`docs/index.html`. If the live demo has not updated a few minutes after a tag push,
+confirm the workflow run in the repository's Actions tab.
 
 ## Update the highlight.js version
 
-`theme.setup` loads highlight.js version `11.9.0` from the cdnjs CDN
+`theme.setup` loads highlight.js version `11.11.2` from the cdnjs CDN
 (content delivery network). The version is pinned in the URL, not
 `latest`, so an update to highlight.js never changes anyone's exported
 pages without your choice. To use a newer version, edit all three cdnjs

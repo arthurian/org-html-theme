@@ -119,7 +119,7 @@ configuration instead:
 
 ## highlight.js version and dark mode
 
-`theme.setup` loads highlight.js version `11.9.0` from the cdnjs CDN
+`theme.setup` loads highlight.js version `11.11.2` from the cdnjs CDN
 (content delivery network). The version is pinned in the URL, not
 `latest`. An update to highlight.js never changes your exported pages
 without your choice.
