@@ -1,0 +1,122 @@
+#+SETUPFILE: "../theme-local.setup"
+#+TITLE: org-html-theme Demo
+#+SUBTITLE: A visual test fixture for the theme
+#+AUTHOR: Demo Author
+#+DATE: 2026-10-02
+
+This file exercises the Org elements the theme styles. Export it to HTML and
+open the result in a browser to check the design. See ../README.md for the
+export command and the full verification checklist.
+
+* Overview
+
+This section exists only to give the sidebar enough content to scroll, and to
+show nested headlines, nested lists, and an internal link.
+
+This paragraph has an inline timestamp, to confirm the theme styles it: a
+meeting on <2026-10-05 Mon>.
+
+** Background
+*** History
+
+Here is an internal link back to the [[*Overview][Overview]] section.
+
+Here is a deeply nested bullet list:
+
+- Platform
+  - Frontend
+    - Components
+      - Buttons
+      - Forms
+  - Backend
+    - Services
+    - Queues
+
+*** TODO [#A] Motivation :draft:review:
+
+This headline carries a TODO keyword, a priority, and two tags, to confirm
+the theme's chip styling.
+
+*** DONE An earlier step
+
+This headline shows the DONE keyword.
+
+** Inline markup
+
+This paragraph shows *bold*, /italic/, _underline_, =verbatim=, ~code~, and
++strikethrough+ text all in one place.
+
+* Code
+
+Two source blocks in different languages, to confirm the highlight.js
+adapter handles more than one ~src-LANG~ class on the same page.
+
+#+begin_src emacs-lisp
+(defun org-html-theme-demo ()
+  "Return a greeting string."
+  (message "Hello from %s" (buffer-name)))
+#+end_src
+
+#+begin_src python
+def greet(name: str) -> str:
+    """Return a greeting string."""
+    return f"Hello, {name}!"
+#+end_src
+
+A plain example block, which is not passed to the syntax highlighter:
+
+#+begin_example
+$ org-export-to-html demo.org
+Exporting to demo.html...
+Done.
+#+end_example
+
+* Tables
+
+#+CAPTION: A small glossary table
+| Term  | Meaning                    |
+|-------+----------------------------|
+| TOC   | Table of contents          |
+| hljs  | highlight.js               |
+| CDN   | Content delivery network   |
+
+* Quotes and verse
+
+#+begin_quote
+Simplicity is the ultimate sophistication.
+#+end_quote
+
+#+begin_verse
+Line one of the verse.
+  Line two, indented.
+Line three.
+#+end_verse
+
+* Notes
+
+This sentence has a footnote reference.[fn:1]
+
+[fn:1] This is the footnote definition.
+
+* Figure
+:PROPERTIES:
+:CUSTOM_ID: demo-figure
+:END:
+
+#+begin_export html
+<div class="figure">
+  <p>
+    <img class="org-svg" alt="A simple placeholder diagram"
+         src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='120'%3E%3Crect width='320' height='120' fill='%23f6f8fa' stroke='%23d8dee4'/%3E%3Ctext x='160' y='65' font-family='sans-serif' font-size='16' text-anchor='middle' fill='%231f2328'%3EPlaceholder SVG%3C/text%3E%3C/svg%3E">
+  </p>
+  <p><span class="figure-number">Figure 1: </span>An inline SVG placeholder, no binary asset required.</p>
+</div>
+#+end_export
+
+* Container class demo
+:PROPERTIES:
+:HTML_CONTAINER_CLASS: demo-callout
+:END:
+
+This subtree carries an ~HTML_CONTAINER_CLASS~ property, to confirm that a
+custom container class does not break the theme's styling.
